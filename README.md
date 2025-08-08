@@ -8,14 +8,32 @@ Repositório dedicado aos sistemas de inteligência artificial da **Tecviu**, fo
 
 ### 🤖 Agentes Disponíveis
 
+#### 🔍 SDR Qualificador
+- **Localização:** `agentes/sdr-qualificador.json`
+- **Função:** Agente especialista em qualificação de leads
+- **Objetivo:** Coletar informações estratégicas e classificar potencial de conversão
+- **Características:** Investigativo, humanizado, focado em coleta de dados e scoring interno
+
 #### 🎯 Higor - Agente Closer
 - **Localização:** `agentes/closer-higor.json`
 - **Função:** Closer consultivo especializado em energia solar
 - **Objetivo:** Qualificar leads e converter para agendamentos de visita técnica
 - **Características:** Humanizado, empático, persuasivo e focado em resultados
 
+### 🔄 Fluxo de Vendas Integrado
+
+```
+Lead Inicial → SDR Qualificador → Scoring/Classificação → Higor Closer → Agendamento
+```
+
+1. **SDR Qualificador** faz a triagem e coleta dados estratégicos
+2. **Sistema de Scoring** classifica leads (Frio/Morno/Quente)
+3. **Higor Closer** recebe leads qualificados para conversão
+4. **Agendamento** de visita técnica para fechamento
+
 ### 🛠️ Ferramentas Integradas
 
+- **enviaPontuacao:** Tool do SDR para classificar leads
 - **MCP Agendamento:** Sistema de agendamento de visitas técnicas
 - **Supabase Base de Dados:** Consulta de informações e cases de sucesso
 - **Embeddings OpenAI:** Busca inteligente de informações
@@ -26,9 +44,11 @@ Repositório dedicado aos sistemas de inteligência artificial da **Tecviu**, fo
 ```
 tecviu-energia-solar/
 ├── agentes/
-│   ├── closer-higor.json       # Agente closer principal
+│   ├── sdr-qualificador.json      # Agente SDR de qualificação
+│   ├── closer-higor.json          # Agente closer principal
 │   └── [futuros agentes]
 ├── documentacao/
+│   ├── implementacao.md           # Guia de implementação
 │   ├── fluxos-vendas.md
 │   └── guidelines.md
 ├── integracao/
@@ -39,32 +59,49 @@ tecviu-energia-solar/
 
 ### 🚀 Como Usar
 
-1. **Configurar Agente:**
-   - Copie o conteúdo de `agentes/closer-higor.json`
-   - Configure em sua plataforma de IA preferida
-   - Ajuste as ferramentas conforme seu setup
+#### Para o SDR Qualificador:
+1. Configure o agente com `agentes/sdr-qualificador.json`
+2. Implemente a tool `enviaPontuacao` no seu sistema
+3. Configure scoring automático (0-100 pontos)
+4. Monitore taxa de qualificação
 
-2. **Personalizar para sua Região:**
-   - Adapte linguagem local
-   - Ajuste casos de sucesso regionais
-   - Configure promoções específicas
-
-3. **Monitorar Performance:**
-   - Taxa de conversão para agendamento
-   - Qualidade dos leads gerados
-   - Show-up rate das visitas
+#### Para o Closer Higor:
+1. Configure o agente com `agentes/closer-higor.json`
+2. Receba leads pré-qualificados do SDR
+3. Foque na conversão para agendamento
+4. Monitore taxa de fechamento
 
 ### 📈 Métricas de Sucesso
 
-- **KPI Principal:** Taxa de conversão para agendamento
-- **KPIs Secundários:** 
-  - Tempo médio de conversa
-  - Score de qualidade do lead
-  - Taxa de comparecimento na visita
-  - Satisfação do cliente
+#### SDR Qualificador:
+- **Taxa de completação** das 6 perguntas
+- **Qualidade do scoring** (precisão da classificação)
+- **Taxa de coleta de e-mail**
+- **Distribuição de leads** por temperatura
+
+#### Closer Higor:
+- **Taxa de conversão** para agendamento
+- **Qualidade dos leads** recebidos
+- **Show-up rate** das visitas
+- **Satisfação do cliente**
+
+### 🎯 Sistema de Scoring
+
+**Critérios de Qualificação (SDR):**
+- 🏦 **Orçamento** (0-25 pts): Capacidade financeira
+- ⏰ **Urgência** (0-20 pts): Prazo para decisão  
+- 🎯 **Motivação** (0-20 pts): Dor específica identificada
+- 👑 **Autoridade** (0-20 pts): Poder de decisão
+- 🏆 **Qualidade** (0-15 pts): Preocupação com qualidade vs preço
+
+**Classificação Final:**
+- 🔥 **Quente** (71-100 pts): Direto para Closer
+- 🌡️ **Morno** (41-70 pts): Nurturing + Closer
+- ❄️ **Frio** (0-40 pts): Nurturing educativo
 
 ### 🔄 Atualizações
 
+- **v1.1** - Agente SDR Qualificador adicionado
 - **v1.0** - Agente Closer Higor implementado
 - **Próximas versões:** Agentes de follow-up, atendimento pós-venda
 
